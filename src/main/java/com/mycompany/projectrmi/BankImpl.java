@@ -13,56 +13,25 @@ import java.util.Map;
  *
  * @author Líder de TIC
  */
+//@Remote
 public class BankImpl extends UnicastRemoteObject implements Bank{
-    private static final long serialVersionUID = 1L;
-    private Map<Integer, Account> accounts;
+    
+    private double[] accounts;
+    
 
     public BankImpl() throws RemoteException {
-        accounts = new HashMap<Integer, Account>();
+        accounts = new double[2];
     }
 
-    @Override
     public void deposit(int accountNumber, double amount) throws RemoteException {
-        Account account = accounts.get(accountNumber);
-        if (account != null) {
-            account.deposit(amount);
-        }
+        accounts[accountNumber - 1] += amount;
     }
 
-    @Override
     public void withdraw(int accountNumber, double amount) throws RemoteException {
-        Account account = accounts.get(accountNumber);
-        if (account != null) {
-            account.withdraw(amount);
-        }
+        accounts[accountNumber - 1] -= amount;
     }
 
-    @Override
     public double getBalance(int accountNumber) throws RemoteException {
-        Account account = accounts.get(accountNumber);
-        if (account != null) {
-            return account.getBalance();
-        }
-        return 0;
-    }
-
-    private class Account {
-        private double balance;
-
-        public Account() {
-            balance = 0;
-        }
-
-        public void deposit(double amount) {
-            balance += amount;
-        }
-
-        public void withdraw(double amount) {
-            balance -= amount;
-        }
-
-        public double getBalance() {
-            return balance;
-        }
+        return accounts[accountNumber - 1];
     }
 }
