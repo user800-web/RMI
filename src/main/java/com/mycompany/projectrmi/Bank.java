@@ -11,8 +11,10 @@ import java.rmi.RemoteException;
  *
  * @author Líder de TIC
  */
+
+//@Remote
 public interface Bank extends Remote{
-    public void deposit(double amount) throws RemoteException;
-    public void withdraw(double amount) throws RemoteException;
-    public double getBalance() throws RemoteException;
+    void deposit(int accountNumber, double amount) throws RemoteException;
+    void withdraw(int accountNumber, double amount) throws RemoteException;
+    double getBalance(int accountNumber) throws RemoteException;
 }

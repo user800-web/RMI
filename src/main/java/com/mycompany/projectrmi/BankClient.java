@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class BankClient {
     public static void main(String[] args) {
         try {
-            Bank bank = (Bank) Naming.lookup("Bank");
+            Bank bank = (Bank) Naming.lookup("rmi://localhost/Bank");
             Scanner scanner = new Scanner(System.in);
             
             while (true) {
@@ -25,20 +25,27 @@ public class BankClient {
                 System.out.println("4. Salir");
                 System.out.print("Ingresa una opción: ");
                 int option = scanner.nextInt();
+                int accountNumber1=0;
                 
                 switch (option) {
                     case 1:
+                        System.out.print("Escriba número de cuenta para depositar: ");
+                        accountNumber1 = scanner.nextInt();
                         System.out.print("Escriba el monto a depositar: ");
                         double depositAmount = scanner.nextDouble();
-                        bank.deposit(depositAmount);
+                        bank.deposit(accountNumber1, depositAmount);
                         break;
                     case 2:
+                        System.out.print("Escriba número de cuenta para retirar: ");
+                        accountNumber1 = scanner.nextInt();
                         System.out.print("Escriba el monto a retirar: ");
                         double withdrawAmount = scanner.nextDouble();
-                        bank.withdraw(withdrawAmount);
+                        bank.withdraw(accountNumber1, withdrawAmount);
                         break;
                     case 3:
-                        System.out.println("Saldo disponible: " + bank.getBalance());
+                        System.out.print("Escriba número de cuenta a consultar: ");
+                        accountNumber1 = scanner.nextInt();
+                        System.out.println("Saldo disponible: " + bank.getBalance(accountNumber1));
                         break;
                     case 4:
                         System.exit(0);

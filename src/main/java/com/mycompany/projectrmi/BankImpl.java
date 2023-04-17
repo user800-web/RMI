@@ -6,31 +6,63 @@ package com.mycompany.projectrmi;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author Líder de TIC
  */
 public class BankImpl extends UnicastRemoteObject implements Bank{
-    private double balance;
+    private static final long serialVersionUID = 1L;
+    private Map<Integer, Account> accounts;
 
     public BankImpl() throws RemoteException {
-        super(); //aqui
-        balance = 0;
+        accounts = new HashMap<Integer, Account>();
     }
-//D´EPOSITO
+
     @Override
-    public void deposit(double amount) throws RemoteException {
-        balance += amount;
+    public void deposit(int accountNumber, double amount) throws RemoteException {
+        Account account = accounts.get(accountNumber);
+        if (account != null) {
+            account.deposit(amount);
+        }
     }
-//RETIRAR
+
     @Override
-    public void withdraw(double amount) throws RemoteException {
-        balance -= amount;
+    public void withdraw(int accountNumber, double amount) throws RemoteException {
+        Account account = accounts.get(accountNumber);
+        if (account != null) {
+            account.withdraw(amount);
+        }
     }
-//OBTENER SALDO
+
     @Override
-    public double getBalance() throws RemoteException {
-        return balance;
+    public double getBalance(int accountNumber) throws RemoteException {
+        Account account = accounts.get(accountNumber);
+        if (account != null) {
+            return account.getBalance();
+        }
+        return 0;
+    }
+
+    private class Account {
+        private double balance;
+
+        public Account() {
+            balance = 0;
+        }
+
+        public void deposit(double amount) {
+            balance += amount;
+        }
+
+        public void withdraw(double amount) {
+            balance -= amount;
+        }
+
+        public double getBalance() {
+            return balance;
+        }
     }
 }

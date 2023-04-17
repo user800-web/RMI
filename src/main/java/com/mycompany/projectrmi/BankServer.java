@@ -14,8 +14,8 @@ import java.rmi.registry.Registry;
 public class BankServer {
     public static void main(String[] args) {
         try {
-            BankImpl bank = new BankImpl();
-            Registry registry = LocateRegistry.createRegistry(1098);
+            Bank bank = new BankImpl();
+            Registry registry = LocateRegistry.createRegistry(1087);
             Naming.rebind("Bank", bank);
             System.out.println("Bank server ready");
         } catch (Exception e) {
