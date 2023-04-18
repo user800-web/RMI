@@ -9,10 +9,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author Líder de TIC
- */
+
 //@Remote
 public class BankImpl extends UnicastRemoteObject implements Bank{
     

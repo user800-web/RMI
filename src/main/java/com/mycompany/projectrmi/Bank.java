@@ -7,10 +7,8 @@ package com.mycompany.projectrmi;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-/**
- *
- * @author Líder de TIC
- */
+
+
 
 //@Remote
 public interface Bank extends Remote{

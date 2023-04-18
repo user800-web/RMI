@@ -14,13 +14,6 @@ public class BankClient {
     public static void main(String[] args) {
         try {
             Bank bank = (Bank) Naming.lookup("rmi://localhost/Bank");
-            /*Realizar operaciones con la cuenta del cliente 1
-            int accountNumber1 = 1;
-            bank.deposit(1, 1000);
-            bank.withdraw(1, 500);
-            double balance1 = bank.getBalance(1);
-            System.out.println("Cliente 1 - Saldo: " + balance1);*/
-            Scanner scanner = new Scanner(System.in);
             
             while (true) {
                 String menu = JOptionPane.showInputDialog("     Banco RMI     \n\n   Menú del Banco   \n"
